@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nagarajan KG - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <!-- FIXED LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-profile">
+        <img src="./img/img-2.jpg" alt="Nagarajan KG" />
+        <h2>Nagarajan KG</h2>
+        <p>Frontend Developer</p>
+      </div>
+
+      <button class="close-btn" id="close-sidebar">
+        <i class="bi bi-x"></i>
+      </button>
+
+      <nav class="sidebar-nav">
+        <a href="#home" class="active"><i class="bi bi-house-door"></i> Home</a>
+        <a href="#about"><i class="bi bi-person"></i> About</a>
+        <a href="#skills"><i class="bi bi-code-square"></i> Skills</a>
+        <a href="#experience"><i class="bi bi-briefcase"></i> Experience</a>
+        <a href="#projects"><i class="bi bi-folder"></i> Projects</a>
+        <a href="#contact"><i class="bi bi-envelope"></i> Contact</a>
+      </nav>
+
+      <div class="sidebar-social">
+        <a
+          href="https://www.linkedin.com/in/nagarajan-kg-7213281ba"
+          target="_blank"
+          ><i class="bi bi-linkedin"></i
+        ></a>
+        <a href="https://github.com" target="_blank"
+          ><i class="bi bi-github"></i
+        ></a>
+        <a href="mailto:nagarajkg101@gmail.com"
+          ><i class="bi bi-envelope-fill"></i
+        ></a>
+      </div>
+    </aside>
+
+    <!-- FIXED TOP-RIGHT HEADER -->
+    <header class="topbar">
+      <button class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="topbar-info">
+        <span><i class="bi bi-envelope"></i> nagarajkg101@gmail.com</span>
+        <span><i class="bi bi-geo-alt"></i> Chennai, India</span>
+        <span><i class="bi bi-phone"></i> +91 6381180189</span>
+      </div>
+
+      <div class="topbar-actions">
+        <a href="#contact" class="btn btn-ghost">Contact</a>
+        <button id="download-resume" class="btn btn-primary">
+          <i class="bi bi-download"></i> Resume
+        </button>
+        <span id="download-msg" style="color: red; display: none">
+          Failed to download resume. Please try again.
+        </span>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const resumeBtn = document.getElementById("download-resume");
+          const msgEl = document.getElementById("download-msg");
+
+          resumeBtn.addEventListener("click", function (e) {
+            e.preventDefault(); // 🚫 Stop any navigation
+            msgEl.style.display = "none";
+
+            try {
+              // ✅ Create a direct Blob to force browser download — no new tab
+              fetch("assets/Nagaraj-CV.pdf")
+                .then((response) => {
+                  if (!response.ok) throw new Error("File not found");
+                  return response.blob();
+                })
+                .then((blob) => {
+                  const blobUrl = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = blobUrl;
+                  a.download = "Nagaraj-CV.pdf"; // ✅ force download
+                  a.style.display = "none";
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  URL.revokeObjectURL(blobUrl); // cleanup
+                })
+                .catch((error) => {
+                  console.error("Download error:", error);
+                  msgEl.style.display = "inline";
+                  msgEl.textContent =
+                    "Failed to download resume. Please try again.";
+                });
+            } catch (err) {
+              console.error("Error:", err);
+              msgEl.style.display = "inline";
+              msgEl.textContent =
+                "Failed to download resume. Please try again.";
+            }
+          });
+        });
+      </script>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- HERO SECTION -->
+      <section class="hero section" id="home">
+        <div class="hero-content">
+          <h1>Hi, I'm Nagarajan KG</h1>
+          <h2>Frontend & Web Developer</h2>
+          <p>
+            Frontend Developer with ~3 years of experience building responsive,
+            high-performance web applications using React.js, JavaScript, HTML5,
+            CSS3, Bootstrap, and Tailwind. Skilled in component-driven
+            development, performance optimization, and pixel-perfect UI
+            implementation. Passionate about creating seamless user experiences
+            and clean, maintainable code.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">React.js</span>
+            <span class="tag">JavaScript (ES6+)</span>
+            <span class="tag">HTML5 & CSS3</span>
+            <span class="tag">Bootstrap & Tailwind</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Responsive Design</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section class="section" id="about">
+        <h3 class="section-title">About Me</h3>
+        <p class="section-subtitle">
+          A passionate frontend developer from Tamil Nadu, India
+        </p>
+        <div class="card">
+          <p style="color: var(--muted); line-height: 1.8; margin-bottom: 20px">
+            I am Nagarajan, a Frontend Developer from Paramakudi, Tamil Nadu. I
+            completed my B.Sc. in Computer Science from Dr. Zakir Husain College
+            (Alagappa University) with a strong academic record and have nearly
+            three years of focused experience building responsive web
+            applications and landing pages.
+          </p>
+          <p style="color: var(--muted); line-height: 1.8">
+            I work with React, Bootstrap, Tailwind, and modern JavaScript
+            patterns, with an emphasis on clean, reusable code and mobile-first
+            design. I'm constantly learning new technologies and best practices
+            to deliver exceptional user experiences.
+          </p>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section class="section" id="skills">
+        <h3 class="section-title">Skills & Technologies</h3>
+        <p class="section-subtitle">
+          My technical expertise and tools I work with
+        </p>
+
+        <div class="skills-categories">
+          <div class="skill-category">
+            <h4><i class="bi bi-code-slash"></i> Languages</h4>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3 / SCSS</li>
+              <li>JavaScript (ES6+)</li>
+              <li>TypeScript (Basic)</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <h4><i class="bi bi-layers"></i> Frameworks & Libraries</h4>
+            <ul>
+              <li>React.js</li>
+              <li>Bootstrap 5</li>
+              <li>Tailwind CSS</li>
+              <li>Material-UI</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <h4><i class="bi bi-diagram-3"></i> State Management</h4>
+            <ul>
+              <li>React Hooks</li>
+              <li>Context API</li>
+              <li>Redux (Basic)</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <h4><i class="bi bi-tools"></i> Tools & Technologies</h4>
+            <ul>
+              <li>Git & GitHub</li>
+              <li>VS Code</li>
+              <li>npm / yarn</li>
+              <li>Webpack / Vite</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <h4><i class="bi bi-phone"></i> Responsive Design</h4>
+            <ul>
+              <li>Mobile-First Approach</li>
+              <li>Flexbox & Grid</li>
+              <li>Media Queries</li>
+              <li>Cross-Browser Testing</li>
+            </ul>
+          </div>
+
+          <div class="skill-category">
+            <h4><i class="bi bi-speedometer2"></i> Performance</h4>
+            <ul>
+              <li>Code Splitting</li>
+              <li>Lazy Loading</li>
+              <li>Asset Optimization</li>
+              <li>Lighthouse Audits</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE SECTION -->
+      <section class="section" id="experience">
+        <h3 class="section-title">Work Experience</h3>
+        <p class="section-subtitle">
+          My professional journey and key contributions
+        </p>
+
+        <div class="experience-list">
+          <div class="experience-item">
+            <h4>Frontend Developer — VVendu Technology</h4>
+            <div class="experience-meta">March 2025 – Present</div>
+            <ul>
+              <li>
+                Developed responsive websites and web apps using React.js,
+                Bootstrap, and JavaScript
+              </li>
+              <li>
+                Collaborated with designers to implement intuitive UI/UX across
+                devices and integrated APIs
+              </li>
+              <li>
+                Optimized performance and ensured cross-browser compatibility
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <h4>Frontend Developer — ASPV Group</h4>
+            <div class="experience-meta">January 2024 – February 2025</div>
+            <ul>
+              <li>
+                Built and maintained responsive web applications using React.js
+                and modern JavaScript
+              </li>
+              <li>
+                Implemented reusable React components following best practices
+              </li>
+              <li>
+                Collaborated with backend teams for seamless API integration
+              </li>
+              <li>Conducted code reviews and mentored junior developers</li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <h4>Frontend Developer — TRS Forms & Services</h4>
+            <div class="experience-meta">June 2023 – December 2023</div>
+            <ul>
+              <li>
+                Designed and developed user-friendly interfaces using HTML5,
+                CSS3, and JavaScript
+              </li>
+              <li>Implemented responsive layouts with Bootstrap framework</li>
+              <li>Optimized website performance and loading times</li>
+              <li>Fixed bugs and improved existing codebase</li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <h4>Web Developer Intern — ZPRO</h4>
+            <div class="experience-meta">January 2023 – May 2023</div>
+            <ul>
+              <li>
+                Assisted in developing web pages using HTML, CSS, and JavaScript
+              </li>
+              <li>Learned version control with Git and GitHub</li>
+              <li>Participated in code reviews and team meetings</li>
+              <li>
+                Gained hands-on experience with modern web development practices
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+
+      <section class="section" id="projects">
+        <h3 class="section-title">My Projects & Live Links</h3>
+        <p class="section-subtitle">
+          Some of my recent work and personal projects
+        </p>
+
+        <div class="projects-grid">
+          <a
+            href="https://womenshgenterprises.com/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>
+              Womens HG Enterprises <i class="bi bi-box-arrow-up-right"></i>
+            </h4>
+            <p>Corporate website for Womens HG Enterprises.</p>
+          </a>
+
+          <a
+            href="https://facades.ind.in/blr/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Facades BLR <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Project site for Facades Ind Bangalore branch.</p>
+          </a>
+
+          <a
+            href="http://lms.trsforms.com/LMSLOGIN.aspx"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>TRS LMS <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>LMS platform — username/password: 1364</p>
+          </a>
+
+          <a
+            href="http://ewms.trsforms.com"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>EWMS Portal <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Enterprise web management system.</p>
+          </a>
+
+          <a
+            href="http://ewms.trsforms.com/dashboard.aspx"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>EWMS Dashboard <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Dashboard access — username/password: 1364</p>
+          </a>
+
+          <a
+            href="http://hrms.trsforms.com/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>TRS HRMS <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>
+              HR management system — username: 1364, password: 1364kumaran2002
+            </p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/Portfolio-nsd/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Portfolio Website <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>My personal portfolio website showcasing my work.</p>
+          </a>
+
+          <a
+            href="https://arasusecurity-37cdb.web.app/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Arasu Security <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Security service web application hosted on Firebase.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/natours-project/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Natours Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Tour booking website with modern CSS animations.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/pattern/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Pattern Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Interactive CSS and JavaScript pattern experiments.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-kg.github.io/Sample/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Sample Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Sample web templates and demos.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-kg.github.io/Payoutt/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Payoutt Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Payment system simulation project.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/mizuxe/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Mizuxe Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>UI/UX practice project with modern design.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/medilab/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Medilab Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Medical lab service website project.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/glozzom/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Glozzom Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>UI/UX design practice project.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/trillo-project/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Trillo Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Booking app clone project using HTML, CSS & JS.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/day-info/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Day Info Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Informational web app showing daily data.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/naxter-info/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>
+              Naxter Info Project <i class="bi bi-box-arrow-up-right"></i>
+            </h4>
+            <p>Data-driven informational project.</p>
+          </a>
+
+          <a
+            href="https://facades.ind.in/hyd/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Facades HYD <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Facades Ind Hyderabad branch project.</p>
+          </a>
+
+          <a
+            href="https://nagarajan-nsd.github.io/estartup-myproject/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>E-Startup Project <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Startup web app project hosted on GitHub Pages.</p>
+          </a>
+
+          <a
+            href="https://notebook-clone.vercel.app/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>Notebook Clone <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>React-based notebook clone with local storage.</p>
+          </a>
+
+          <a href="https://brand360s.com/" class="project-card" target="_blank">
+            <h4>Brand360s <i class="bi bi-box-arrow-up-right"></i></h4>
+            <p>Corporate branding and services website.</p>
+          </a>
+
+          <a
+            href="https://auction.vvendu.com/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>
+              VVendu Auction Platform <i class="bi bi-box-arrow-up-right"></i>
+            </h4>
+            <p>Auction platform built for VVendu with React.js.</p>
+          </a>
+
+          <a
+            href="https://www.arasugroup.com/"
+            class="project-card"
+            target="_blank"
+          >
+            <h4>
+              Arasu Security Service (ASPV) <i class="bi bi-box-arrow-up-right"></i>
+            </h4>
+            <p>Service Platform</p>
+          </a>
+        </div>
+
+        
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="section" id="contact">
+        <h3 class="section-title">Get In Touch</h3>
+        <p class="section-subtitle">
+          Feel free to reach out for collaborations or opportunities
+        </p>
+
+        <div class="card">
+          <div style="text-align: center">
+            <p
+              style="color: var(--muted); margin-bottom: 30px; font-size: 16px"
+            >
+              I'm currently open to frontend development opportunities. Let's
+              connect!
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+              "
+            >
+              <a href="mailto:nagarajkg101@gmail.com" class="btn btn-primary">
+                <i class="bi bi-envelope-fill"></i> Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nagarajan-kg-7213281ba"
+                target="_blank"
+                class="btn btn-ghost"
+              >
+                <i class="bi bi-linkedin"></i> LinkedIn
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                class="btn btn-ghost"
+              >
+                <i class="bi bi-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FIXED FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <i class="bi bi-heart-fill"></i>
+        <span
+          >Created by
+          <strong style="color: var(--primary)">Nagaraj</strong></span
+        >
+      </div>
+      <div class="footer-icons">
+        <a
+          href="https://github.com"
+          target="_blank"
+          class="footer-icon"
+          title="GitHub"
+        >
+          <i class="bi bi-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/nagarajan-kg-7213281ba"
+          target="_blank"
+          class="footer-icon"
+          title="LinkedIn"
+        >
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a
+          href="mailto:nagarajkg101@gmail.com"
+          class="footer-icon"
+          title="Email"
+        >
+          <i class="bi bi-envelope-fill"></i>
+        </a>
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          class="footer-icon"
+          title="Twitter"
+        >
+          <i class="bi bi-twitter"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Active navigation highlighting
+      const sections = document.querySelectorAll(".section");
+      const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Add animation classes on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = "0s";
+            entry.target.style.opacity = "1";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".section").forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+
+    <script>
+      const toggleBtn = document.getElementById("menu-toggle");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("close-sidebar");
+      const overlay = document.getElementById("overlay");
+      const icon = toggleBtn.querySelector("i");
+
+      // Toggle open/close
+      toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("show");
+
+        if (sidebar.classList.contains("open")) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+          icon.style.color = "red";
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+          icon.style.color = "var(--primary)";
+        }
+      });
+
+      // Close sidebar when clicking close icon or overlay
+      [closeBtn, overlay].forEach((el) =>
+        el.addEventListener("click", () => {
+          sidebar.classList.remove("open");
+          overlay.classList.remove("show");
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+          icon.style.color = "var(--primary)";
+        })
+      );
+    </script>
+  </body>
+</html>
