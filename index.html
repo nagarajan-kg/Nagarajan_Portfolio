@@ -85,7 +85,7 @@
 
             try {
               // ✅ Create a direct Blob to force browser download — no new tab
-              fetch("assets/Nagaraj-CV.pdf")
+              fetch("assets/Nagaraj-CV.pdf.pdf")
                 .then((response) => {
                   if (!response.ok) throw new Error("File not found");
                   return response.blob();
@@ -94,7 +94,7 @@
                   const blobUrl = URL.createObjectURL(blob);
                   const a = document.createElement("a");
                   a.href = blobUrl;
-                  a.download = "Nagaraj-CV.pdf"; // ✅ force download
+                  a.download = "Nagaraj-CV.pdf.pdf"; // ✅ force download
                   a.style.display = "none";
                   document.body.appendChild(a);
                   a.click();
